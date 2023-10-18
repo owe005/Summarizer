@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Summarizer</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <script src="static/js/script.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h1>PDF Summarizer</h1>
+        <p>Select how you want to provide the PDF:</p>
+        <div>
+            <input type="radio" name="pdf-source" id="upload" value="upload" checked>
+            <label for="upload">Upload a PDF file</label>
+        </div>
+        <div>
+            <input type="radio" name="pdf-source" id="url" value="url">
+            <label for="url">Provide a URL to a PDF</label>
+        </div>
+        
+        <!-- File Upload Form -->
+        <form id="upload-form" action="/upload" method="post" enctype="multipart/form-data">
+            <input type="file" name="pdf-file" accept=".pdf">
+            <input type="submit" value="Summarize">
+        </form>
+        
+        <!-- URL Form -->
+        <form id="url-form" action="/summarize-url" method="post" style="display: none;">
+            <input type="url" name="pdf-url" placeholder="Enter PDF URL">
+            <input type="submit" value="Summarize">
+        </form>
+        
+        <div id="summary-result">
+            <!-- Placeholder for displaying the summary -->
+        </div>
+    </div>
+</body>
+</html>
