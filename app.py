@@ -1,7 +1,6 @@
 import os
 from flask import Flask, request, jsonify, render_template
 from werkzeug.utils import secure_filename
-import requests
 from main import read_pdf_from_url, divide_text_into_parts, get_summary, combine_summaries, extract_text_from_pdf
 
 app = Flask(__name__)

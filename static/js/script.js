@@ -1,6 +1,5 @@
 
 document.addEventListener('DOMContentLoaded', function() {
-    const uploadRadio = document.getElementById('upload');
     const uploadForm = document.getElementById('upload-form');
     const summaryResult = document.getElementById('summary-result');
     const loadingDiv = document.getElementById('loading');
