@@ -38,11 +38,11 @@ def combine_summaries(summaries_list):
     return response["choices"][0]["message"]["content"]
 
 def extract_text_from_pdf(pdf):
-    with open(pdf, 'rb') as f:
-        pdf_reader = PyPDF2.PdfReader(f)
-
     text = ""
 
-    for page_num in range(len(pdf_reader.pages)):
-        text += pdf_reader.pages[page_num].extract_text()
+    with open(pdf, 'rb') as f:
+        pdf_reader = PyPDF2.PdfReader(f)
+        for page_num in range(len(pdf_reader.pages)):
+            text += pdf_reader.pages[page_num].extract_text()
+            
     return text

@@ -19,7 +19,7 @@ def upload_pdf():
         return jsonify({"error": "No file selected!"}), 400
     if file:
         filename = secure_filename(file.filename)
-        filepath = os.path.join("", filename)
+        filepath = os.path.join("temp/", filename)
         file.save(filepath)
         text = extract_text_from_pdf(filepath)
         text_parts = divide_text_into_parts(text, 3)

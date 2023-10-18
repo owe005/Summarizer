@@ -1,29 +1,32 @@
+
 document.addEventListener('DOMContentLoaded', function() {
     const uploadRadio = document.getElementById('upload');
-    const urlRadio = document.getElementById('url');
     const uploadForm = document.getElementById('upload-form');
-    const urlForm = document.getElementById('url-form');
     const summaryResult = document.getElementById('summary-result');
+    const loadingDiv = document.getElementById('loading');
 
-    // Toggle between forms based on user choice
-    uploadRadio.addEventListener('change', function() {
-        uploadForm.style.display = 'block';
-        urlForm.style.display = 'none';
-    });
-    
-    urlRadio.addEventListener('change', function() {
-        uploadForm.style.display = 'none';
-        urlForm.style.display = 'block';
-    });
-
-    // Handle form submissions
+    // Handle file upload form submission
     uploadForm.addEventListener('submit', function(event) {
         event.preventDefault();
-        // TODO: Handle file upload and make AJAX call to server
-    });
-
-    urlForm.addEventListener('submit', function(event) {
-        event.preventDefault();
-        // TODO: Handle URL submission and make AJAX call to server
+        loadingDiv.style.display = 'block';
+        
+        const formData = new FormData(uploadForm);
+        
+        fetch('/upload', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            summaryResult.style.display = 'block';
+            summaryResult.innerHTML = `<strong>Summary:</strong> ${data.summary}`;
+            loadingDiv.style.display = 'none';
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            summaryResult.style.display = 'block';
+            summaryResult.innerHTML = 'Error generating summary. Please try again later.';
+            loadingDiv.style.display = 'none';
+        });
     });
 });
