@@ -6,6 +6,14 @@ document.addEventListener('DOMContentLoaded', function() {
     // Handle file upload form submission
     uploadForm.addEventListener('submit', function(event) {
         event.preventDefault();
+
+        // Check for reCAPTCHA response specific to the form being submitted
+        const recaptchaValue = uploadForm.querySelector('.g-recaptcha-response').value;
+        if (!recaptchaValue) {
+            alert('Please complete the reCAPTCHA validation.');
+            return;
+        }
+        
         loadingDiv.style.display = 'block';
         
         const formData = new FormData(uploadForm);
