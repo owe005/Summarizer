@@ -253,3 +253,22 @@ input[type="url"]:focus {
     top: 15px;
     right: 80px;
 }
+
+.button-link {
+    position: absolute;  /* This allows you to position the button within the container */
+    top: 10px;           /* Adjust this value for desired vertical placement */
+    left: 10px;          /* Adjust this value for desired horizontal placement */
+    display: inline-block;
+    padding: 5px 10px;   /* Reduced padding for a smaller button */
+    border: none;
+    background-color: #3498db;
+    color: white;
+    text-decoration: none;
+    border-radius: 3px;  /* Smaller border radius for a tighter curve */
+    font-size: 14px;     /* Adjust for desired font size */
+    transition: background-color 0.3s ease;
+}
+
+.button-link:hover {
+    background-color: #2980b9;
+}
