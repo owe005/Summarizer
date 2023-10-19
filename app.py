@@ -1,13 +1,12 @@
 import os
 from flask import Flask, request, jsonify, render_template
-import requests
 from main import divide_text_into_parts, get_summary, extract_text_from_pdf, num_tokens_from_string, calculate_parts
 import uuid
 from config import RECAPTCHA_SECRET_KEY
 
 app = Flask(__name__)
 
-# Simple or Advanced mode
+# Simple or Adanced mode
 global AI_MODE
 
 # Default to simple mode
@@ -17,24 +16,8 @@ AI_MODE = "simple"
 def index():
     return render_template('index.html')
 
-def verify_recaptcha(recaptcha_response):
-    payload = {
-        'secret': RECAPTCHA_SECRET_KEY,
-        'response': recaptcha_response
-    }
-    response = requests.post('https://www.google.com/recaptcha/api/siteverify', payload)
-    result = response.json()
-    return result.get('success')
-
 @app.route('/upload', methods=['POST'])
 def upload_pdf():
-    recaptcha_response = request.form.get('g-recaptcha-response')
-
-    if not recaptcha_response:
-        return jsonify({"error": "No reCAPTCHA response received!"}), 400
-    
-    elif not verify_recaptcha(recaptcha_response):
-        return jsonify({"error": "reCAPTCHA verification failed!"}), 400
     
     if 'pdf-file' not in request.files:
         return jsonify({"error": "No file provided!"}), 400
@@ -103,6 +86,7 @@ def set_mode():
         return jsonify({"message": f"Mode set to {AI_MODE}"})
     else:
         return jsonify({"error": "Invalid mode provided!"}), 400
+
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)
