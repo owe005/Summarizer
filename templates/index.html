@@ -1,31 +1,57 @@
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PDF Summarizer</title>
-    <link rel="stylesheet" href="static/css/style.css">
-    <script src="static/js/script.js" defer></script>
-</head>
-<body>
-    <div class="container">
-        <h1>PDF Summarizer</h1>
-        <p>Upload a .pdf file and have it analyzed and summarized by ChatGPT!</p>
 
-        <!-- File Upload Form -->
-        <form id="upload-form" action="/upload" method="post" enctype="multipart/form-data">
-            <input type="file" name="pdf-file" accept=".pdf">
-            <input type="submit" value="Summarize">
-        </form>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 
-    <div id="loading" style="display: none;">
-        <div class="spinner"></div>
-        <p>Summarizing...</p>
+  <title>
+   PDF Summarizer
+  </title>
+
+  <link href="static/css/style.css" rel="stylesheet"/>
+  <script defer="" src="static/js/script.js"></script>
+ </head>
+
+ <body>
+  <div class="container">
+
+   <p><span id="mode-description"></span></p>
+   <label class="switch">
+    <input type="checkbox"/>
+    <span class="slider round"></span>
+   </label>
+
+   <h1>
+    PDF Summarizer
+   </h1>
+
+   <p>
+    Upload a .pdf file and have it analyzed and summarized by ChatGPT!
+   </p>
+
+   <!-- File Upload Form -->
+   <form action="/upload" enctype="multipart/form-data" id="upload-form" method="post">
+    <input accept=".pdf" name="pdf-file" type="file"/>
+    <input type="submit" value="Summarize"/>
+   </form>
+
+   <div id="loading" style="display: none;">
+    <div class="spinner">
     </div>
-    <div id="summary-result">
-            <!-- Placeholder for displaying the summary -->
-        </div>
-    </div>
-</body>
+
+    <p>
+     Summarizing...
+    </p>
+
+   </div>
+
+   <div id="summary-result">
+    <!-- Placeholder for displaying the summary -->
+   </div>
+
+  </div>
+
+ </body>
+ 
 </html>
