@@ -8,6 +8,9 @@ app = Flask(__name__)
 # Simple or Adanced mode
 global AI_MODE
 
+# Default to simple mode
+AI_MODE = "simple"
+
 @app.route('/')
 def index():
     return render_template('index.html')
