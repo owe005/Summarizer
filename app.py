@@ -83,4 +83,4 @@ def set_mode():
         return jsonify({"error": "Invalid mode provided!"}), 400
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000)
