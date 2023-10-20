@@ -2,7 +2,6 @@ import os
 from flask import Flask, request, jsonify, render_template
 from main import divide_text_into_parts, get_summary, extract_text_from_pdf, num_tokens_from_string, calculate_parts
 import uuid
-from config import RECAPTCHA_SECRET_KEY
 
 app = Flask(__name__)
 
