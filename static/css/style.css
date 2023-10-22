@@ -8,10 +8,12 @@ body, textarea, select, button, p, ul, li, a {
 
 body {
     background-image: url('../img/3492868.gif');
+    background-attachment: fixed;
+    background-size: cover;
     color: #000;
     font-size: 18px;
     line-height: 1.5;
-    overflow-x: hidden;
+    transition: background-color 0.3s;
 }
 
 /* Container styling */
