@@ -1,7 +1,9 @@
 import os
 from flask import Flask, request, jsonify, render_template
+import requests
 from main import divide_text_into_parts, get_summary, extract_text_from_pdf, num_tokens_from_string, calculate_parts
 import uuid
+from config import RECAPTCHA_SECRET_KEY
 
 app = Flask(__name__)
 
@@ -17,7 +19,6 @@ def index():
 
 @app.route('/upload', methods=['POST'])
 def upload_pdf():
-    
     if 'pdf-file' not in request.files:
         return jsonify({"error": "No file provided!"}), 400
     
@@ -85,7 +86,6 @@ def set_mode():
         return jsonify({"message": f"Mode set to {AI_MODE}"})
     else:
         return jsonify({"error": "Invalid mode provided!"}), 400
-
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)

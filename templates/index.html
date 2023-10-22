@@ -11,6 +11,7 @@
 
   <link href="static/css/style.css" rel="stylesheet"/>
   <script defer="" src="static/js/script.js"></script>
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
  </head>
 
  <body>
@@ -41,9 +42,13 @@
    </h1>
 
    <p>
-    Upload a .pdf file and have it analyzed and summarized by ChatGPT! <br><br> If it does not work, check <a href="https://status.openai.com/">OpenAI Status</a>
+    Upload a .pdf file and have it analyzed and summarized by ChatGPT! <br><br> If it does not work, check <a href="https://status.openai.com/">OpenAI Status.</a>
    </p>
+   <br>
 
+   <div class="g-recaptcha" data-sitekey="6LcUA6woAAAAAMUb9sxzM044NaKDuedToRfEu8VA"></div>
+   
+   <br>
    <!-- File Upload Form -->
    <form action="/upload" enctype="multipart/form-data" id="upload-form" method="post">
     <input accept=".pdf" name="pdf-file" type="file"/>

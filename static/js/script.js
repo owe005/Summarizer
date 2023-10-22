@@ -5,9 +5,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Handle file upload form submission
     uploadForm.addEventListener('submit', function(event) {
+        // Always prevent default form submission
         event.preventDefault();
+
+        // Check if reCAPTCHA has been passed
+        const recaptchaValue = grecaptcha.getResponse();
+        if (!recaptchaValue) {
+            alert('Please complete the reCAPTCHA validation.');
+            return;
+        }
+
         loadingDiv.style.display = 'block';
-        
         const formData = new FormData(uploadForm);
         
         fetch('/upload', {
@@ -28,11 +36,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
-
-// New function to handle switch
-// If on, tell app.py to set APP_MODE to "advanced"
-// If off, tell app.py to set APP_MODE to "simple"
-
 
 // Get the switch checkbox element
 const modeSwitch = document.querySelector('.switch input[type="checkbox"]');
@@ -72,3 +75,4 @@ updateModeDescription();
 
 // Also call the function when the switch status changes
 modeSwitch.addEventListener('change', updateModeDescription);
+
