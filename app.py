@@ -43,25 +43,7 @@ def upload_pdf():
             print(f"Summarized! Tokens so far: {num_tokens_from_string(summaries, 'gpt-3.5-turbo')}")
 
         print(f"Getting ready to combine summaries...")
-
-        # Unsure if I will keep this code, depends if it's needed.
-        ''' while num_tokens_from_string(summaries, "gpt-3.5-turbo") > 4096:
-            print(f"Summaries too long! Splitting into parts...")
-            n = calculate_parts(summaries, "gpt-3.5-turbo")
-            summaries_parts = divide_text_into_parts(summaries, n)
-            summaries = ""
-
-            for part in summaries_parts:
-                summaries += get_summary(part)
-                print(f"Summarized! Tokens so far: {num_tokens_from_string(summaries, 'gpt-3.5-turbo')}")
-
-            if num_tokens_from_string(summaries, "gpt-3.5-turbo") > 4096:
-                print(f"Summaries still too long! Trying again...")
-
-            else:
-                print(f"Summaries combined! Tokens: {num_tokens_from_string(summaries, 'gpt-3.5-turbo')}")
-                break'''
-        
+ 
         os.remove(filepath)  # Clean up the saved file
 
         if AI_MODE == "simple":

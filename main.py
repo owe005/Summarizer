@@ -23,18 +23,6 @@ def calculate_parts(text: str, model_name: str) -> int:
 
 openai.api_key = API_KEY
 
-def read_pdf_from_url(url):
-    response = requests.get(url)
-    response.raise_for_status()
-    f = io.BytesIO(response.content)
-    pdf_reader = PyPDF2.PdfReader(f)
-    text = ""
-
-    for page_num in range(len(pdf_reader.pages)):
-        text += pdf_reader.pages[page_num].extract_text()
-    
-    return text
-
 def divide_text_into_parts(text, n_parts):
     total_length = len(text)
     part_length = total_length // n_parts
@@ -46,13 +34,6 @@ def get_summary(text_part):
                                             messages=[{"role": "system", "content": "You are now the Summarizer. Your job is to summarize texts. Be specific and try to give concrete examples. Summarize the following text: "},
                                             {"role": "user", "content": text_part}])
     return response["choices"][0]["message"]["content"]
-
-'''def combine_summaries(summaries_list):
-    joined_summaries = ' '.join(summaries_list)
-    response = openai.ChatCompletion.create(model="gpt-3.5-turbo",
-                                            messages=[{"role": "system", "content": "You are now the Combine Summarizer. Your job is to combine different summaries into one big summary. It is preferable if the summary is specific and not too general."},
-                                            {"role": "user", "content": joined_summaries}])
-    return response["choices"][0]["message"]["content"]'''
 
 def extract_text_from_pdf(pdf):
     text = ""
