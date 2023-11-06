@@ -46,4 +46,6 @@ Keep in mind that currently, the maximum token limit for this is 4096 tokens, bu
 
 ```text_parts = divide_text_into_parts(text, 3)```
 
-You'd then change the "3" to a larger number, but it will increase the time it takes to get a summary.
+You then change the "3" to a larger number, but it will increase the time it takes to get a summary.
+
+Edit: With the newly added "Advanced mode" the token limit is now limitless, it'll just take a very long time.
